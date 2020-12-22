@@ -1,59 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;700;800&display=swap");
 
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 :root {
-    --theme-defautl: #f6810a;
-    --hover-link: #CC4400;
+  --theme-defautl: #f6810a;
+  --hover-link: #cc4400;
 }
 
 body {
-    background: white;
-    font-family: 'Mukta', sans-serif !important;
-    padding-bottom: 2em;
+  background: white;
+  font-family: "Mukta", sans-serif !important;
+  padding-bottom: 2em;
 }
-
+.bold {
+  font-weight: bold;
+}
 a {
-    text-decoration: none;
-    color: var(--theme-defautl) !important;
+  text-decoration: none;
+  color: var(--theme-defautl) !important;
 }
-.container-product>a{
-    text-decoration: none !important;
+.container-product > a {
+  text-decoration: none !important;
 }
 a:hover {
-    color: var(--hover-link) !important;
+  color: var(--hover-link) !important;
 }
 
 #logo img {
-    width: 7em;
+  width: 7em;
 }
 
 .product img {
-    width: 10em;
+  width: 10em;
 }
 
 a.ico {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 a.text-decoration-none.options {
-    font-size: 22px;
+  font-size: 22px;
 }
 
 a.btn-orange {
-    background: var(--theme-defautl);
-    color: white !important;
+  background: var(--theme-defautl);
+  color: white !important;
 }
 
 a.btn-orange:hover {
-    background: var(--hover-link);
+  background: var(--hover-link);
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

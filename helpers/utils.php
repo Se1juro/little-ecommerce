@@ -42,7 +42,9 @@ class utils
     public static function isAdmin()
     {
         if (!isset($_SESSION['admin'])) {
-            header('Location:' . base_url);
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="' . base_url . '";';
+            echo '</script>';
         }
         return true;
     }
@@ -54,5 +56,58 @@ class utils
         $categoria = new Categoria();
         $categorias = $categoria->listar();
         return $categorias;
+    }
+
+    public static function redirectIndex()
+    {
+        if (!headers_sent()) {
+            header('Location:' . base_url);
+            exit;
+        } else { //si se han enviado haremos redirect desde javascript
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="' . base_url . '";';
+            echo '</script>';
+        }
+    }
+
+    public static function statsCarrito()
+    {
+        $stats = array(
+            "count" => 0,
+            "total" => 0,
+        );
+        if (isset($_SESSION['carrito'])) {
+            $stats['count'] = count($_SESSION['carrito']);
+            foreach ($_SESSION['carrito'] as $precio) {
+                $stats['total'] += $precio['precio'] * $precio['unidades'];
+            }
+        }
+        return $stats;
+    }
+    public static function isLogged()
+    {
+        if (!isset($_SESSION['user'])) {
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="' . base_url . '";';
+            echo '</script>';
+        }
+        return true;
+    }
+    public static function showEstadoPedido($estado)
+    {
+        switch ($estado) {
+            case 'confirm':
+                return 'Pendiente';
+                break;
+            case 'preparation':
+                return 'En Preparación';
+                break;
+            case 'ready':
+                return 'Preparado para enviar';
+                break;
+            case 'sended':
+                return 'Enviado';
+                break;
+        }
     }
 }

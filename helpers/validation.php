@@ -97,4 +97,35 @@ class Validation
             return false;
         }
     }
+
+    public static function validatePedido($pedido, $direccion, $ciudad, $direccion2, $departamento)
+    {
+        $errors = array();
+        if (!empty($direccion) && !is_numeric($direccion)) {
+            $pedido->setDireccion($direccion);
+        } else {
+            $errors['direccion'] = 'La dirección no es valida';
+        }
+        if (!empty($ciudad) && !is_numeric($ciudad)) {
+            $pedido->setCiudad($ciudad);
+        } else {
+            $errors['ciudad'] = 'La ciudad no es valida';
+        }
+        if (!is_numeric($direccion2)) {
+            $pedido->setDireccion2($direccion2);
+        } else {
+            $errors['direccion2'] = 'La direccion complementaria no es valida';
+        }
+        if (!empty($departamento) && !is_numeric($departamento)) {
+            $pedido->setDepartamento($departamento);
+        } else {
+            $errors['departamento'] = 'El departamento no es valido';
+        }
+        if (count($errors) == 0) {
+            return true;
+        } else {
+            $_SESSION['errors'] = $errors;
+            return false;
+        }
+    }
 }

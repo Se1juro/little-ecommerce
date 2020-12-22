@@ -58,9 +58,23 @@ class usuariosController
                 if ($identity->id_role == 2) {
                     $_SESSION['admin'] = true;
                 }
-                header('Location:' . base_url);
+                if (!headers_sent()) {
+                    header('Location:' . base_url);
+                    exit;
+                } else { //si se han enviado haremos redirect desde javascript
+                    echo '<script type="text/javascript">';
+                    echo 'window.location.href="' . base_url . '";';
+                    echo '</script>';
+                }
             } else {
-                header('Location:' . base_url . 'Usuarios/login');
+                if (!headers_sent()) {
+                    header('Location:' . base_url . 'Usuarios/login');
+                    exit;
+                } else { //si se han enviado haremos redirect desde javascript
+                    echo '<script type="text/javascript">';
+                    echo 'window.location.href="' . base_url . '/usuarios/login";';
+                    echo '</script>';
+                }
             }
         }
     }
@@ -71,7 +85,14 @@ class usuariosController
             unset($_SESSION['user']);
             if (isset($_SESSION['admin'])) unset($_SESSION['admin']);
             session_destroy();
-            header('Location:' . base_url);
+            if (!headers_sent()) {
+                header('Location:' . base_url);
+                exit;
+            } else { //si se han enviado haremos redirect desde javascript
+                echo '<script type="text/javascript">';
+                echo 'window.location.href="' . base_url . '";';
+                echo '</script>';
+            }
         }
     }
 }

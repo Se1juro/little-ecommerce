@@ -16,7 +16,7 @@
                     </figure>
                     <h3 style="height: 66px"><?= $product->nombre ?></h3>
                     <p class="price"><?= $product->precio ?></p>
-                    <a href="" class="text-decoration-none btn btn-orange">Añadir al carrito</a>
+                    <a href="<?= base_url ?>carrito/add&id=<?= $product->id ?>" class="text-decoration-none btn btn-orange">Añadir al carrito</a>
                 </div>
             <?php endwhile; ?>
         </div>

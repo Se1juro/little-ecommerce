@@ -11,7 +11,7 @@
                 <h3 class="price"><?= $product->precio ?></h3>
                 <p><span style="font-weight: bold">Categoría: </span> <?= $category->nombre ?></p>
                 <p><span style="font-weight: bold">Descripción: </span> <?= $product->descripcion ?></p>
-                <a href="" class="btn btn-orange">Comprar</a>
+                <a href="<?=base_url?>carrito/add&id=<?=$product->id?>" class="btn btn-orange">Comprar</a>
             </div>
         </div>
     <?php else: ?>

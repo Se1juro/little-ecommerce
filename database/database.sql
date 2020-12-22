@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS pedidos
     direccion    varchar(140)            not null,
     ciudad       varchar(140)            not null,
     departamento varchar(140)            not null,
-    direccion2   varchar(255)            not null,
+    direccion2   varchar(255),
     costo_total  bigint                  not null,
     estado       varchar(20)             not null,
     fecha        date                    not null,
