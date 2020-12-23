@@ -5,7 +5,7 @@ class CarritoController
 {
     public function index()
     {
-        if (isset($_SESSION['carrito'])){
+        if (isset($_SESSION['carrito'])) {
             $carrito = $_SESSION['carrito'];
         }
         require_once 'views/carrito/index.php';
@@ -51,9 +51,44 @@ class CarritoController
 
     public function remove()
     {
+        if (isset($_GET['index'])) {
+            $index = $_GET['index'];
+            unset($_SESSION['carrito'][$index]);
+        }
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="' . base_url . 'carrito/";';
+        echo '</script>';
     }
 
-    public function delete()
+    public function deleteAll()
     {
+        unset($_SESSION['carrito']);
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="' . base_url . 'carrito/";';
+        echo '</script>';
+    }
+    public function up()
+    {
+        if (isset($_GET['index'])) {
+            $index = $_GET['index'];
+            $_SESSION['carrito'][$index]['unidades']++;
+        }
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="' . base_url . 'carrito/";';
+        echo '</script>';
+    }
+    public function down()
+    {
+        if (isset($_GET['index'])) {
+            $index = $_GET['index'];
+            if ($_SESSION['carrito'][$index]['unidades'] == 1) {
+                unset($_SESSION['carrito'][$index]);
+            } else {
+                $_SESSION['carrito'][$index]['unidades']--;
+            }
+        }
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="' . base_url . 'carrito/";';
+        echo '</script>';
     }
 }

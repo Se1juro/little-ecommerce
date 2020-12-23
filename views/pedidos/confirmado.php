@@ -1,4 +1,5 @@
-<?php if (isset($_SESSION['pedido']) && $_SESSION['pedido'] === 'confirmado') : ?>
+<?php if (isset($_SESSION['pedido']) && $_SESSION['pedido'] === 'confirmado') :
+?>
     <h1>Tu pedido se ha confirmado</h1>
     <p>Tu pedido ha sido guardado con exito, una vez que realices la transferencia bancaria a la cuenta
         <strong>42424242</strong>
@@ -27,7 +28,7 @@
                         <td>
                             <?= $producto->nombre ?>
                         </td>
-                        <td>
+                        <td class="price">
                             <?= $producto->precio ?>
                         </td>
                         <td>

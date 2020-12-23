@@ -32,17 +32,26 @@ class usuariosController
                 $save = $usuario->save();
                 if ($save) {
                     $_SESSION['register'] = "complete";
-                    header('Location:' . base_url . "Usuarios/register");
+                    echo '<script type="text/javascript">';
+                    echo 'window.location.href="' . base_url . 'usuarios/register";';
+                    echo '</script>';
                 } else {
                     $_SESSION['register'] = "failed";
-                    header('Location:' . base_url . "Usuarios/register");
+                    echo '<script type="text/javascript">';
+                    echo 'window.location.href="' . base_url . 'usuarios/register";';
+                    echo '</script>';
                 }
             } else {
-                header('Location:' . base_url . "Usuarios/register");
+                $_SESSION['register'] = "failed";
+                echo '<script type="text/javascript">';
+                echo 'window.location.href="' . base_url . 'usuarios/register";';
+                echo '</script>';
             }
         } else {
             $_SESSION['register'] = "failed";
-            header('Location:' . base_url . "Usuarios/register");
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="' . base_url . 'usuarios/register";';
+            echo '</script>';
         }
     }
 
@@ -62,9 +71,7 @@ class usuariosController
                     header('Location:' . base_url);
                     exit;
                 } else { //si se han enviado haremos redirect desde javascript
-                    echo '<script type="text/javascript">';
-                    echo 'window.location.href="' . base_url . '";';
-                    echo '</script>';
+                    Utils::redirectIndex();
                 }
             } else {
                 if (!headers_sent()) {
@@ -72,7 +79,7 @@ class usuariosController
                     exit;
                 } else { //si se han enviado haremos redirect desde javascript
                     echo '<script type="text/javascript">';
-                    echo 'window.location.href="' . base_url . '/usuarios/login";';
+                    echo 'window.location.href="' . base_url . 'usuarios/login";';
                     echo '</script>';
                 }
             }
@@ -86,12 +93,10 @@ class usuariosController
             if (isset($_SESSION['admin'])) unset($_SESSION['admin']);
             session_destroy();
             if (!headers_sent()) {
-                header('Location:' . base_url);
+                Utils::redirectIndex();
                 exit;
             } else { //si se han enviado haremos redirect desde javascript
-                echo '<script type="text/javascript">';
-                echo 'window.location.href="' . base_url . '";';
-                echo '</script>';
+                Utils::redirectIndex();
             }
         }
     }

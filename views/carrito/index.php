@@ -5,14 +5,13 @@ $stats = Utils::statsCarrito();
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <?php if (isset($carrito) && !empty($carrito)):
-                foreach ($carrito as $index => $elemento):
+            <?php if (isset($carrito) && !empty($carrito)) :
+                foreach ($carrito as $index => $elemento) :
                     $producto = $elemento['producto'] ?>
-                    <div class="d-flex">
+                    <div class="d-flex mb-3">
                         <figure class="w-50" style="margin-right: 1em">
                             <?php if ($producto->imagen != null) : ?>
-                                <img src="<?= base_url ?>uploads/images/<?= $producto->imagen ?>" class="w-100 h-100"
-                                     alt="<?= $producto->nombre ?>">
+                                <img src="<?= base_url ?>uploads/images/<?= $producto->imagen ?>" class="w-100 h-100" alt="<?= $producto->nombre ?>">
                             <?php else : ?>
                                 <img src="<?= base_url ?>assets/img/camiseta.png" alt="<?= $producto->nombre ?>">
                             <?php endif; ?>
@@ -23,11 +22,26 @@ $stats = Utils::statsCarrito();
                             </a>
                             <p><?= $producto->descripcion ?></p>
                             <p class="price"><?= $producto->precio ?></p>
-                            <p><span style="font-weight: bold">Unidades:</span> <?= $elemento['unidades'] ?></p>
+                            <p>
+                                <span style="font-weight: bold">Unidades:</span>
+                                <?= $elemento['unidades'] ?>
+                            </p>
+                            <p>
+                                <a href="<?= base_url ?>carrito/up&index=<?= $index ?>">Aumentar Cantidad</a>
+
+                            </p>
+                            <p>
+                                <a href="<?= base_url ?>carrito/down&index=<?= $index ?>">Restar Cantidad</a>
+
+                            </p>
+                            <a href="<?= base_url ?>carrito/remove&index=<?= $index ?>" class="btn btn-danger text-white">
+                                Eliminar Producto
+                            </a>
+
                         </div>
                     </div>
                 <?php endforeach;
-            else:?>
+            else : ?>
                 <h3 class="mt-3">No hay productos en tu carrito</h3>
             <?php endif; ?>
         </div>
@@ -51,6 +65,11 @@ $stats = Utils::statsCarrito();
                     </li>
                     <li class="list-group-item">
                         <a href="<?= base_url ?>pedido/procesar" class="btn btn-orange btn-block">Procesar Compra</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="<?= base_url ?>carrito/deleteAll" class="btn btn-danger text-white btn-block">
+                            Vaciar Carrito
+                        </a>
                     </li>
                 </ul>
             </div>

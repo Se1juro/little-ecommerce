@@ -33,6 +33,7 @@ class pedidoController
                     $_SESSION['pedido'] = "failed";
                 }
             }
+            unset($_SESSION['carrito']);
             echo '<script type="text/javascript">';
             echo 'window.location.href="' . base_url . 'pedido/confirmado";';
             echo '</script>';
